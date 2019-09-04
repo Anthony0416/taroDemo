@@ -36,7 +36,7 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray0", "positions"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray6", "positions"], _this.config = {
       navigationBarTitleText: '首页'
     }, _this.touchEvent = function (e) {
       var positions = [];
@@ -46,6 +46,7 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       _this.setState({
         positions: positions
       });
+      console.log(positions);
     }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -81,20 +82,20 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       var positions = this.__state.positions;
 
       var Colors = ['#ff0000', '#ff3300', '#ff6600', '#ff9900', '#ffff00', '#99ff00', '#00ff00', '#00ffff', '#0000ff', '#6600ff'];
-      var loopArray0 = positions.map(function (item, index) {
+      var loopArray6 = positions.map(function (item, index) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
         var $loopState__temp2 = item.$original.toString();
-        var $loopState__temp4 = (0, _index.internal_inline_style)({ background: Colors[index], left: item.$original.clientX, top: item.$original.clientY });
+        var $loopState__temp4 = (0, _index.internal_inline_style)({ background: Colors[index], left: item.$original.clientX + 'px', top: item.$original.clientY + 'px' });
         return {
           $loopState__temp2: $loopState__temp2,
           $loopState__temp4: $loopState__temp4,
           $original: item.$original
         };
-      }, React.createElement(View, { style: $loopState__temp4 }));
+      });
       Object.assign(this.__state, {
-        loopArray0: loopArray0
+        loopArray6: loopArray6
       });
       return this.__state;
     }

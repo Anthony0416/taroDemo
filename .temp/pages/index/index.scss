@@ -1,3 +1,11 @@
 .index {
   height: 100%;
+  position: relative;
+}
+.touchPoint {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
 }

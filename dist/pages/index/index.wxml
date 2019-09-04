@@ -1,4 +1,5 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="index" bindtouchstart="touchEvent" bindtouchmove="touchEvent"><text wx:key="$loopState__temp2" wx:for="{{loopArray0}}" wx:for-item="item" wx:for-index="index">{{index}}</text>
+    <view class="index" bindtouchstart="touchEvent" bindtouchmove="touchEvent" bindtouchend="touchEvent">
+        <view wx:key="$loopState__temp2" class="touchPoint" style="{{item.$loopState__temp4}}" wx:for="{{loopArray6}}" wx:for-item="item" wx:for-index="index"></view>
     </view>
 </block>

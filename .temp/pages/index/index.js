@@ -1,6 +1,6 @@
 import Nerv from "nervjs";
 import { Component } from "@tarojs/taro-h5";
-import { View, Text } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import './index.scss';
 export default class Index extends Component {
   constructor() {
@@ -22,7 +22,9 @@ export default class Index extends Component {
     const { positions } = this.state;
     const Colors = ['#ff0000', '#ff3300', '#ff6600', '#ff9900', '#ffff00', '#99ff00', '#00ff00', '#00ffff', '#0000ff', '#6600ff'];
     return <View className="index" onTouchStart={this.touchEvent} onTouchMove={this.touchEvent}>
-        {positions.map((item, index) => <Text key={item.toString()}>{index}</Text>, <View style={{ background: Colors[index], left: item.clientX, top: item.clientY }}></View>)}
+        {positions.map((item, index) => {
+        return <View className="touchPoint" style={{ background: Colors[index], left: item.clientX, top: item.clientY }}></View>;
+      })}
       </View>;
   }
   config = {
@@ -36,6 +38,7 @@ export default class Index extends Component {
     this.setState({
       positions: positions
     });
+    console.log(positions);
   };
 
   componentDidMount() {

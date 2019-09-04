@@ -29,17 +29,21 @@ export default class Index extends Component {
     this.setState({
       positions: positions
     })
+    console.log(positions)
   }
 
   render () {
     const { positions } = this.state
     const Colors = ['#ff0000', '#ff3300', '#ff6600', '#ff9900', '#ffff00', '#99ff00', '#00ff00', '#00ffff', '#0000ff', '#6600ff']
     return (
-      <View className='index' onTouchStart={this.touchEvent} onTouchMove={this.touchEvent}>
-        {positions.map((item, index) =>
-          <Text key={item.toString()}>{index}</Text>
-          <View style={{background: Colors[index], left: item.clientX, top: item.clientY}}></View>
-        )}
+      <View className='index' onTouchStart={this.touchEvent} onTouchMove={this.touchEvent} onTouchEnd={this.touchEvent}>
+        {
+          positions.map((item, index) =>
+            return (
+              <View key={item.toString()} className='touchPoint' style={{background: Colors[index], left: item.clientX + 'px', top: item.clientY + 'px'}}></View>
+            )
+          )
+        }
       </View>
     )
   }
