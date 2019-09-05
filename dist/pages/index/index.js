@@ -36,17 +36,47 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray6", "positions"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "loopArray52", "chooseIndex", "positions", "countDown"], _this.config = {
       navigationBarTitleText: '首页'
     }, _this.touchEvent = function (e) {
-      var positions = [];
-      for (var i = 0; i < 10; i++) {
-        e.touches[i] ? positions.push(e.touches[i]) : '';
+      if (_this.state.countDown > 0) {
+        var positions = [];
+        for (var i = 0; i < 10; i++) {
+          e.touches[i] ? positions.push(e.touches[i]) : null;
+        }
+        _this.setState({
+          positions: positions
+        });
       }
+    }, _this.startEvent = function () {
       _this.setState({
-        positions: positions
+        chooseIndex: null,
+        positions: []
       });
-      console.log(positions);
+      var countDown = 11;
+      var Interval = setInterval(function () {
+        if (countDown) {
+          countDown--;
+          _this.setState({
+            countDown: countDown
+          });
+        } else {
+          clearInterval(Interval);
+          _this.chooseEvent();
+        }
+      }, 1000);
+    }, _this.chooseEvent = function () {
+      var index = 0;
+      var Interval = setInterval(function () {
+        if (index === 20) {
+          clearInterval(Interval);
+        } else {
+          index++;
+          _this.setState({
+            chooseIndex: Math.round(Math.random() * _this.state.positions.length)
+          });
+        }
+      }, 100);
     }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -63,13 +93,12 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
        */
 
       this.state = {
-        positions: []
+        positions: [],
+        countDown: 0,
+        chooseIndex: null
       };
       this.$$refs = [];
     }
-  }, {
-    key: "componentWillMount",
-    value: function componentWillMount() {}
   }, {
     key: "_createData",
     value: function _createData() {
@@ -79,30 +108,37 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var positions = this.__state.positions;
+      var _state = this.__state,
+          positions = _state.positions,
+          countDown = _state.countDown,
+          chooseIndex = _state.chooseIndex;
+      // const Colors = ['#ff0000', '#ff3300', '#ff6600', '#ff9900', '#ffff00', '#99ff00', '#00ff00', '#00ffff', '#0000ff', '#6600ff']
 
-      var Colors = ['#ff0000', '#ff3300', '#ff6600', '#ff9900', '#ffff00', '#99ff00', '#00ff00', '#00ffff', '#0000ff', '#6600ff'];
-      var loopArray6 = positions.map(function (item, index) {
+      var anonymousState__temp = ['times', countDown ? null : 'none'].join(' ');
+      var anonymousState__temp2 = ['startBtn', countDown ? 'none' : null].join(' ');
+      var loopArray52 = positions.map(function (item, index) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
-        var $loopState__temp2 = item.$original.toString();
-        var $loopState__temp4 = (0, _index.internal_inline_style)({ background: Colors[index], left: item.$original.clientX + 'px', top: item.$original.clientY + 'px' });
+        var $loopState__temp4 = item.$original.toString();
+        var $loopState__temp6 = (0, _index.internal_inline_style)({ left: item.$original.clientX + 'px', top: item.$original.clientY + 'px' });
         return {
-          $loopState__temp2: $loopState__temp2,
           $loopState__temp4: $loopState__temp4,
+          $loopState__temp6: $loopState__temp6,
           $original: item.$original
         };
       });
       Object.assign(this.__state, {
-        loopArray6: loopArray6
+        anonymousState__temp: anonymousState__temp,
+        anonymousState__temp2: anonymousState__temp2,
+        loopArray52: loopArray52
       });
       return this.__state;
     }
   }]);
 
   return Index;
-}(_index.Component), _class.$$events = ["touchEvent"], _class.$$componentPath = "pages/index/index", _temp2);
+}(_index.Component), _class.$$events = ["touchEvent", "startEvent"], _class.$$componentPath = "pages/index/index", _temp2);
 exports.default = Index;
 
 Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));
