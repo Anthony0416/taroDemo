@@ -22,29 +22,68 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Index = (_temp2 = _class = function (_BaseComponent) {
-  _inherits(Index, _BaseComponent);
+var party = (_temp2 = _class = function (_BaseComponent) {
+  _inherits(party, _BaseComponent);
 
-  function Index() {
+  function party() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Index);
+    _classCallCheck(this, party);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Index.__proto__ || Object.getPrototypeOf(Index)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["lists"], _this.config = {
-      navigationBarTitleText: '迷你小工具'
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = party.__proto__ || Object.getPrototypeOf(party)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray5", "countDown", "chooseIndex", "positions"], _this.config = {
+      navigationBarTitleText: '首页'
+    }, _this.touchEvent = function (e) {
+      if (_this.state.countDown > 0) {
+        var positions = [];
+        for (var i = 0; i < 10; i++) {
+          e.touches[i] ? positions.push(e.touches[i]) : null;
+        }
+        _this.setState({
+          positions: positions
+        });
+      }
+    }, _this.startEvent = function () {
+      _this.setState({
+        chooseIndex: null,
+        positions: []
+      });
+      var countDown = 11;
+      var Interval = setInterval(function () {
+        if (countDown) {
+          countDown--;
+          _this.setState({
+            countDown: countDown
+          });
+        } else {
+          clearInterval(Interval);
+          _this.chooseEvent();
+        }
+      }, 1000);
+    }, _this.chooseEvent = function () {
+      var index = 0;
+      var Interval = setInterval(function () {
+        if (index === 20) {
+          clearInterval(Interval);
+        } else {
+          index++;
+          _this.setState({
+            chooseIndex: Math.round(Math.random() * _this.state.positions.length)
+          });
+        }
+      }, 100);
     }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(Index, [{
+  _createClass(party, [{
     key: "_constructor",
     value: function _constructor() {
-      _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), "_constructor", this).apply(this, arguments);
+      _get(party.prototype.__proto__ || Object.getPrototypeOf(party.prototype), "_constructor", this).apply(this, arguments);
       /**
        * 指定config的类型声明为: Taro.Config
        *
@@ -54,27 +93,9 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
        */
 
       this.state = {
-        lists: [{
-          icon: 'icon-zhinanzhen',
-          name: '指南针',
-          path: '/pages/compass/compass'
-        }, {
-          icon: 'icon-duoren',
-          name: '幸运儿',
-          path: '/pages/party/party'
-        }, {
-          icon: 'icon-shijian',
-          name: '国际时间',
-          path: '/pages/party/party'
-        }, {
-          icon: 'icon-saoma',
-          name: '二维码识别',
-          path: '/pages/party/party'
-        }, {
-          icon: 'icon-bofangqi-danmugundongkai',
-          name: '弹幕发送',
-          path: '/pages/party/party'
-        }]
+        positions: [],
+        countDown: 0,
+        chooseIndex: null
       };
       this.$$refs = [];
     }
@@ -87,15 +108,33 @@ var Index = (_temp2 = _class = function (_BaseComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var lists = this.__state.lists;
+      var _state = this.__state,
+          positions = _state.positions,
+          countDown = _state.countDown,
+          chooseIndex = _state.chooseIndex;
+      // const Colors = ['#ff0000', '#ff3300', '#ff6600', '#ff9900', '#ffff00', '#99ff00', '#00ff00', '#00ffff', '#0000ff', '#6600ff']
 
-      Object.assign(this.__state, {});
+      var loopArray5 = positions.map(function (item, index) {
+        item = {
+          $original: (0, _index.internal_get_original)(item)
+        };
+        var $loopState__temp2 = item.$original.toString();
+        var $loopState__temp4 = (0, _index.internal_inline_style)({ left: item.$original.clientX + 'px', top: item.$original.clientY + 'px' });
+        return {
+          $loopState__temp2: $loopState__temp2,
+          $loopState__temp4: $loopState__temp4,
+          $original: item.$original
+        };
+      });
+      Object.assign(this.__state, {
+        loopArray5: loopArray5
+      });
       return this.__state;
     }
   }]);
 
-  return Index;
-}(_index.Component), _class.$$events = [], _class.$$componentPath = "pages/index/index", _temp2);
-exports.default = Index;
+  return party;
+}(_index.Component), _class.$$events = ["touchEvent", "startEvent"], _class.$$componentPath = "pages/party/party", _temp2);
+exports.default = party;
 
-Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(Index, true));
+Component(require('../../npm/@tarojs/taro-weapp/index.js').default.createComponent(party, true));

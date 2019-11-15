@@ -1,0 +1,8 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="party" bindtouchstart="touchEvent" bindtouchmove="touchEvent" bindtouchend="touchEvent"><text class="{{'times ' + (countDown ? null : 'none')}}">{{countDown}}</text>
+        <view class="{{'startBtn ' + (countDown ? 'none' : null)}}" bindtap="startEvent">开始</view>
+        <view class="playExp"><text class="text">点击开始按钮屏幕开始倒计时，倒计时结束前请所有参与者将手指放在屏幕上，倒计时结束后停止手指检测，系统开始自动选人。</text><text class="text">受设备屏幕多点触控限制，最大支持10指，具体请参考您的手机配置说明。</text>
+        </view>
+        <view wx:key="$loopState__temp2" class="{{(chooseIndex === index ? 'choosed' : null) + ' touchPoint'}}" style="{{item.$loopState__temp4}}" wx:for="{{loopArray5}}" wx:for-item="item" wx:for-index="index"></view>
+    </view>
+</block>
