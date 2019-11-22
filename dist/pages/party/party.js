@@ -36,7 +36,7 @@ var party = (_temp2 = _class = function (_BaseComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = party.__proto__ || Object.getPrototypeOf(party)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray5", "countDown", "chooseIndex", "positions"], _this.config = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = party.__proto__ || Object.getPrototypeOf(party)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray2", "countDown", "chooseIndex", "positions"], _this.config = {
       navigationBarTitleText: '首页'
     }, _this.touchEvent = function (e) {
       if (_this.state.countDown > 0) {
@@ -114,7 +114,7 @@ var party = (_temp2 = _class = function (_BaseComponent) {
           chooseIndex = _state.chooseIndex;
       // const Colors = ['#ff0000', '#ff3300', '#ff6600', '#ff9900', '#ffff00', '#99ff00', '#00ff00', '#00ffff', '#0000ff', '#6600ff']
 
-      var loopArray5 = positions.map(function (item, index) {
+      var loopArray2 = positions.map(function (item, index) {
         item = {
           $original: (0, _index.internal_get_original)(item)
         };
@@ -127,7 +127,7 @@ var party = (_temp2 = _class = function (_BaseComponent) {
         };
       });
       Object.assign(this.__state, {
-        loopArray5: loopArray5
+        loopArray2: loopArray2
       });
       return this.__state;
     }
